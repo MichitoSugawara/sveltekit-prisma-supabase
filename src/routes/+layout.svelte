@@ -1,10 +1,33 @@
-<script lang='ts'>
-	// The ordering of these imports is critical to your app working properly
-	import '@skeletonlabs/skeleton/themes/theme-crimson.css';
-	// If you have source.organizeImports set to true in VSCode, then it will auto change this ordering
+<script lang="ts">
+	import '@skeletonlabs/skeleton/themes/theme-vintage.css';
 	import '@skeletonlabs/skeleton/styles/all.css';
-	// Most of your app wide CSS should be put in this file
 	import '../app.postcss';
+
+	import { invalidate } from '$app/navigation';
+	import { onMount } from 'svelte';
+	import type { LayoutData } from './$types';
+	
+	export let data: LayoutData;
+
+	$: ({ supabase, session } = data);
+
+	onMount(() => {
+		const { data } = supabase.auth.onAuthStateChange(() => {
+			invalidate('supabase:auth');
+		});
+
+		return () => data.subscription.unsubscribe();
+	});
 </script>
+
+<svelte:head>
+	<title>sveltekit-prisma-supabase</title>
+</svelte:head>
+
+{#if !session}
+  <a href="/auth">ログイン</a>
+{:else}
+  <h1>{session.user.email}でログイン中</h1>
+{/if}
 
 <slot />
