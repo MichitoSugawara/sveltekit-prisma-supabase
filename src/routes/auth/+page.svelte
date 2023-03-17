@@ -16,7 +16,7 @@
 			<Auth
 				supabaseClient={data.supabase}
 				view="sign_in"
-				redirectTo={`${data.url}/logging-in?redirect=/`}
+				redirectTo={'/logging-in?redirect=/'}
 				showLinks={true}
 				appearance={{ theme: ThemeSupa ,style: { message: 'display: none' } }}
 				onlyThirdPartyProviders={false}

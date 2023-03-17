@@ -63,5 +63,5 @@ enable_confirmations = false
 # `twitter`, `slack`, `spotify`, `workos`, `zoom`.
 [auth.external.github]
 enabled = true
-client_id = "8bde41883c13bdb83be8"
-secret = "f91991dbe5a88da0d6d8d0456b4709c279763689"
+client_id = "f8b4e0cbdf1819929b6a"
+secret = "57024efd835fd3493823e3d44c9d1947a19e3bb9"
